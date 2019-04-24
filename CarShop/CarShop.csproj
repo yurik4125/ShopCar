@@ -45,10 +45,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -124,19 +132,90 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Car.cs">
+      <DependentUpon>ShopeDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Order.cs">
+      <DependentUpon>ShopeDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ShopeDBModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ShopeDBModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ShopeDBModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ShopeDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ShopeDBModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ShopeDBModel.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\ShopDB.mdf" />
+    <Content Include="App_Data\ShopDB_log.ldf">
+      <DependentUpon>ShopDB.mdf</DependentUpon>
+    </Content>
     <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\CSS\styles.css" />
+    <Content Include="Content\Ghibili.html" />
+    <Content Include="Content\GranTurismo.html" />
+    <Content Include="Content\images\Button-2.jpg" />
+    <Content Include="Content\images\Button.jpg" />
+    <Content Include="Content\images\Form.png" />
+    <Content Include="Content\images\Ghibli-1.jpeg" />
+    <Content Include="Content\images\Ghibli-2.jpeg" />
+    <Content Include="Content\images\Ghibli-3.jpeg" />
+    <Content Include="Content\images\Ghibli.jpg" />
+    <Content Include="Content\images\Grand.jpg" />
+    <Content Include="Content\images\GranTurismo-1.jpeg" />
+    <Content Include="Content\images\GranTurismo-2.jpeg" />
+    <Content Include="Content\images\GranTurismo-3.jpeg" />
+    <Content Include="Content\images\Header.png" />
+    <Content Include="Content\images\Logo.jpg" />
+    <Content Include="Content\images\Map.jpg" />
+    <Content Include="Content\images\Quatro.jpg" />
+    <Content Include="Content\images\Quattroporte-2.png" />
+    <Content Include="Content\images\Quattroporte-3.jpg" />
+    <Content Include="Content\images\Quattroporte.png" />
+    <Content Include="Content\index.html" />
+    <Content Include="Content\JS\jquery-1.11.0.min.js" />
+    <Content Include="Content\JS\scrypts.js" />
+    <Content Include="Content\Quattroporte.html" />
+    <Content Include="Content\Site.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Content\Site.css" />
+    <Content Include="Models\ShopeDBModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ShopeDBModel.Context.cs</LastGenOutput>
+      <DependentUpon>ShopeDBModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\ShopeDBModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ShopeDBModel.edmx</DependentUpon>
+      <LastGenOutput>ShopeDBModel.cs</LastGenOutput>
+    </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <EntityDeploy Include="Models\ShopeDBModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ShopeDBModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\ShopeDBModel.edmx.diagram">
+      <DependentUpon>ShopeDBModel.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -163,22 +242,18 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="Content\bootstrap.min.css.map" />
-    <Content Include="Content\bootstrap.css.map" />
-    <Content Include="Content\bootstrap-theme.min.css.map" />
-    <Content Include="Content\bootstrap-theme.css.map" />
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
